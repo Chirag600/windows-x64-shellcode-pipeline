@@ -26,7 +26,7 @@ LDFLAGS_PE      = -O2 -Wall -nostdlib -nodefaultlibs -Wl,--entry=AlignRSP
 .PHONY: all asm cleaned_asm pe shellcode clean \
         docker-build docker-asm docker-cleaned-asm docker-pe docker-shellcode docker-clean
 
-all: shellcode
+all: docker-shellcode
 
 asm: $(ASM_OUT)
 
